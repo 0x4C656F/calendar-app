@@ -1,0 +1,64 @@
+<section
+  class="w-fit flex flex-col gap-5 bg-slate-100 p-5 rounded-md items-center justify-center"
+>
+  <h2 class="text-2xl font-bold">Edit this event</h2>
+  <form
+    [formGroup]="eventForm"
+    (ngSubmit)="submitTime()"
+    class="flex flex-col gap-3"
+  >
+    <mat-form-field>
+      <mat-label>From</mat-label>
+      <input
+        matInput
+        type="time"
+        formControlName="fromTime"
+        required
+        min="08:00"
+        max="19:00"
+        step="900"
+      />
+      <mat-error *ngIf="eventForm.get('fromTime')?.hasError('required')"
+        >From time is required</mat-error
+      >
+      <mat-error *ngIf="eventForm.get('fromTime')?.hasError('invalidTime')"
+        >Time must be between 8 AM and 7 PM</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>To</mat-label>
+      <input
+        matInput
+        type="time"
+        formControlName="toTime"
+        required
+        min="08:00"
+        max="19:00"
+        step="900"
+      />
+      <mat-error *ngIf="eventForm.get('toTime')?.hasError('required')"
+        >To time is required</mat-error
+      >
+      <mat-error *ngIf="eventForm.get('toTime')?.hasError('invalidTime')"
+        >Time must be between 8 AM and 7 PM</mat-error
+      >
+    </mat-form-field>
+
+    <mat-error *ngIf="eventForm.hasError('invalidTimeRange')"
+      >To time must be after From time</mat-error
+    >
+
+    <div class="flex justify-between">
+      <label for="title">Title</label>
+      <input type="text" formControlName="title" required />
+    </div>
+
+    <div class="flex justify-between">
+      <label for="content">Content</label>
+      <textarea formControlName="content" required></textarea>
+    </div>
+
+    <button mat-raised-button type="submit">Save</button>
+  </form>
+</section>

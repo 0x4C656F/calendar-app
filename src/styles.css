@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --text: #061a0c;
+  --background: #fbfefc;
+  --primary: #3bcf6c;
+  --secondary: #8d98e3;
+  --accent: #8e70dc;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

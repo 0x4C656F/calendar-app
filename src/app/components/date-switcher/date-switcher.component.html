@@ -1,0 +1,21 @@
+<section class="flex flex-col gap-5">
+  <div class="flex justify-between gap-5 items-center">
+    <div class="flex items-center w-48 py-1 justify-between text-right">
+      <button mat-icon-button (click)="setPrevDate()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <span
+        class="font-semibold mt-2"
+        *ngIf="dateService.isToday(selectedDate()); else prevDate"
+      >
+        Today
+      </span>
+      <ng-template #prevDate>
+        <span class="mt-2">{{ selectedDate() | date : "MMM d, y" }}</span>
+      </ng-template>
+      <button mat-icon-button (click)="setNextDate()">
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+  </div>
+</section>

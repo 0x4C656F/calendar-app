@@ -1,0 +1,56 @@
+<section class="overflow-auto mt-5 flex border-slate-300 h-[800px]">
+  <ul class="flex flex-col h-fit w-[60px]">
+    <li
+      class="opacity-60 h-[60px] flex items-center justify-center border-gray-300"
+      *ngFor="let hour of hoursOfTheDay"
+    >
+      {{ hour }}
+    </li>
+  </ul>
+  <div class="w-fit h-fit relative">
+    @for(timeblock of timeblockService.timeblocks; track timeblock.from) {
+    @if(isInSameWeek(timeblock.from, selectedDate())) {
+    <div
+      [style.height]="timeblock.height + 'px'"
+      [style.top]="30 + timeblock.top + 'px'"
+      [style.left]="2 + timeblock.left + 'px'"
+      [style.width]="timeblock.width + 'px'"
+      (click)="setSelectedTimeBlock.emit(timeblock)"
+      class="timeblock"
+    >
+      <div>
+        <div class="font-semibold text-fuchsia-900 truncate">
+          {{ timeblock.title }}
+        </div>
+        <div class="text-xs text-fuchsia-700 mt-1 truncate">
+          {{ timeblock.from | date : "shortTime" }} -
+          {{ timeblock.to | date : "shortTime" }}
+        </div>
+      </div>
+    </div>
+    } }
+    <table class="overflow-auto relative" class="w-full">
+      <thead>
+        <tr>
+          <th class="h-0"></th>
+          <th *ngFor="let day of daysOfTheWeek" class="day-name">
+            {{ day }}
+          </th>
+        </tr>
+      </thead>
+      <tbody class="relative">
+        <tr
+          class="border-y border-collapse h-[60px] border-gray-300"
+          *ngFor="let hour of hoursOfTheDay"
+        >
+          <td class="w-0"></td>
+          <td
+            *ngFor="let day of daysOfTheWeek"
+            [class.day-cell-selected]="isSelectedDay(day)"
+            class="schedule-cell w-[120px] min-w-[120px] text-center border-x border-slate-300"
+          ></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

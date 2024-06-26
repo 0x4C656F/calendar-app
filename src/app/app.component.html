@@ -1,0 +1,28 @@
+<main class="flex w-screen h-screen p-5 bg-slate-200 bg-clip-content">
+  <div class="flex flex-col items-center justify-center">
+    <calendar
+      [selectedDate]="selectedDate"
+      [viewedDate]="viewedDate"
+      (setSelectedDate)="setSelectedDate($event)"
+      (setViewedDate)="setViewedDate($event)"
+    ></calendar>
+    <timeblock-creation-form
+      [selectedDate]="selectedDate"
+    ></timeblock-creation-form>
+  </div>
+
+  <div class="w-fit px-10 border-x-2 border-slate-400">
+    <date-switcher
+      [selectedDate]="selectedDate"
+      (setSelectedDate)="setSelectedDate($event)"
+    ></date-switcher>
+    <day-schedule
+      [selectedDate]="selectedDate"
+      (setSelectedTimeBlock)="setSelectedTimeBlock($event)"
+    ></day-schedule>
+  </div>
+  <timeblock-data
+    [timeblock]="getTimeBlock()"
+    [selectedDate]="selectedDate"
+  ></timeblock-data>
+</main>

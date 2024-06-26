@@ -1,0 +1,67 @@
+<div *ngIf="timeblock()" class="flex items-center justify-center flex-col">
+  <div
+    class="bg-white rounded-lg shadow-md p-4 m-10 hover:shadow-lg transition-shadow duration-300 border-l-4 border-emerald-500"
+  >
+    <div class="flex justify-between items-center gap-3 mb-2">
+      <h3 class="text-lg font-semibold text-gray-800">
+        {{ timeblock().title }}
+      </h3>
+      <span class="text-sm font-medium text-gray-500">
+        {{ formatTime(timeblock().from) }} - {{ formatTime(timeblock().to) }}
+      </span>
+      <button
+        mat-icon-button
+        class="mb-2"
+        (click)="
+          timeblockService.removeTimeBlockByFromTimestamp(timeblock().from)
+        "
+        aria-label="Delete timeblock"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <p class="text-gray-600 mb-3">{{ timeblock().content }}</p>
+    <div class="flex justify-between items-center text-sm text-gray-500">
+      <span class="flex items-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4 mr-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+          />
+        </svg>
+        {{ formatDate(timeblock().from) }}
+      </span>
+      <span class="flex items-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4 mr-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        {{ calculateDuration() }}
+      </span>
+    </div>
+  </div>
+  <timeblock-edit-form
+    *ngIf="timeblock()"
+    [selectedDate]="selectedDate()"
+    [timeblock]="timeblock()"
+    (setTimeblock)="editTimeblock($event)"
+  ></timeblock-edit-form>
+</div>

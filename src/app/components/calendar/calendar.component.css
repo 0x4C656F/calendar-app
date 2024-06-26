@@ -1,0 +1,12 @@
+.day-box {
+  @apply w-10 h-10 flex rounded-full cursor-pointer text-text justify-center items-center font-semibold hover:bg-emerald-100 transition-all;
+}
+.today {
+  @apply border border-black;
+}
+.selected {
+  @apply bg-emerald-400 border border-transparent text-white hover:bg-emerald-500;
+}
+.not-current-month {
+  @apply border-transparent opacity-50 border font-normal;
+}

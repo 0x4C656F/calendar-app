@@ -1,0 +1,11 @@
+.day-name {
+  @apply font-bold text-xl;
+}
+
+.day-cell-selected {
+  @apply bg-emerald-100 text-text;
+}
+
+.timeblock {
+  @apply absolute rounded-md z-50 p-2 overflow-hidden transition-all duration-200 ease-in-out hover:shadow-lg hover:z-50 cursor-pointer bg-gradient-to-r from-fuchsia-400 to-fuchsia-300;
+}
